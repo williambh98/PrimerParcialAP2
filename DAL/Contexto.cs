@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Entidades;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -9,7 +10,7 @@ namespace DAL
 {
     public class Contexto : DbContext
     {
-        //public DbSet<Pacientes> Pacientes { get; set; }
+        public DbSet<ProbarTest> probar { get; set; }
 
         public Contexto() : base("ConStr")
         {
