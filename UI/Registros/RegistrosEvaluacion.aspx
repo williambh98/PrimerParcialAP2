@@ -26,29 +26,28 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="Estudiante:" class="col-md-3 control-label input-sm">Fecha: </label>
+                        <label for="Estudiante" class="col-md-3 control-label input-sm">Estudiante: </label>
                         <div class="col-md-8">
                             <asp:TextBox class="form-control input-sm" ID="EstudianteTextBox" runat="server"></asp:TextBox>
                         </div>
                     </div>
 
-                    <div class="form-group">
-                        <label for="Categoria:" class="col-md-3 control-label input-sm">Fecha: </label>
+                   <div class="form-group">
+                        <label for="Categoria:" class="col-md-3 control-label input-sm">Categoria: </label>
                         <div class="col-md-8">
-                            <asp:TextBox class="form-control input-sm" ID="CategoriaTextBox:" runat="server"></asp:TextBox>
+                            <asp:TextBox class="form-control input-sm" ID="CategoriaTextBox" runat="server"></asp:TextBox>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label for="Valor:" class="col-md-3 control-label input-sm">Fecha: </label>
+                        <label for="Valor:" class="col-md-3 control-label input-sm">Valor: </label>
                         <div class="col-md-8">
                             <asp:TextBox class="form-control input-sm" ID="ValorTextBox" runat="server"></asp:TextBox>
                         </div>
                     </div>
 
-
                     <div class="form-group">
-                        <label for="Logrado:" class="col-md-3 control-label input-sm">Fecha: </label>
+                        <label for="Logrado:" class="col-md-3 control-label input-sm">Logrado: </label>
                         <div class="col-md-8">
                             <asp:TextBox class="form-control input-sm" ID="LogradoTextBox" runat="server"></asp:TextBox>
                         </div>
@@ -75,11 +74,14 @@
                         </asp:GridView>
                     </div>
                 </div>
-                <div class="form-group">
-                    <asp:Label ID="Total:" runat="server" Text="Label"></asp:Label>
-                    <asp:TextBox ID="TotalTextBox" runat="server"></asp:TextBox>
+                     <div class="form-group">
+                        <label for="Total:" class="col-md-3 control-label input-sm">Total: </label>
+                        <div class="col-md-8">
+                            <asp:TextBox class="form-control input-sm" ID="TotalTextBox" runat="server"></asp:TextBox>
+                        </div>
+                    </div>
                 </div>
-            </div>
+            
         </div>
         <div class="panel-footer">
             <div class="text-center">

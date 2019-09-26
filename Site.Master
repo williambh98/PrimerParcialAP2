@@ -35,14 +35,14 @@
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Registros
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="/UI/Registros/Ranalisis.aspx">Prueba</a>
+                                <a class="dropdown-item" href="/UI/Registros/RegistrosEvaluacion.aspx">Prueba</a>
                             </div>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Consultas
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="/UI/Consultas/Canalisis.aspx">Prueba</a>
+                                <a class="dropdown-item" href="/UI/Consultas/RegistrosEvaluacion.aspx">Prueba</a>
                             </div>
                         </li>
                     </ul>

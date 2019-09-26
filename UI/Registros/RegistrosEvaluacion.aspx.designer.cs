@@ -49,13 +49,13 @@ namespace PrimerParcial.UI.Registros {
         protected global::System.Web.UI.WebControls.TextBox EstudianteTextBox;
         
         /// <summary>
-        /// CategoriaTextBox: control.
+        /// CategoriaTextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox CategoriaTextBox:;
+        protected global::System.Web.UI.WebControls.TextBox CategoriaTextBox;
         
         /// <summary>
         /// ValorTextBox control.
@@ -92,15 +92,6 @@ namespace PrimerParcial.UI.Registros {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView GridView;
-        
-        /// <summary>
-        /// Total: control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Total:;
         
         /// <summary>
         /// TotalTextBox control.

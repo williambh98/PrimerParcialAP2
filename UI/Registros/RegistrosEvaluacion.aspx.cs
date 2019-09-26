@@ -51,12 +51,14 @@ namespace PrimerParcial.UI.Registros
         }
         public void Limpiar()
         {
-            IdTextBox.Text = string.Empty;
+            IdTextBox.Text = "0";
             EstudianteTextBox.Text = string.Empty;
             CategoriaTextBox.Text = string.Empty;
             ValorTextBox.Text = 0.ToString();
             LogradoTextBox.Text = 0.ToString();
+            TotalTextBox.Text = 0.ToString();
             ViewState["Evaluacion"] = new Evaluacion();
+            GridView.DataSource = null;
             this.BindGrid();
         }
         protected void buscarButton_Click(object sender, EventArgs e)
@@ -104,9 +106,14 @@ namespace PrimerParcial.UI.Registros
         {
             Evaluacion evaluacion = new Evaluacion();
             evaluacion = (Evaluacion)ViewState["Evaluacion"];
+            decimal p = Convert.ToDecimal(ValorTextBox.Text) - Convert.ToDecimal(LogradoTextBox.Text);
             evaluacion.AgragarDetalle(0, Utils.ToInt(IdTextBox.Text),EstudianteTextBox.Text, Convert.ToDecimal(ValorTextBox.Text),Convert.ToDecimal(LogradoTextBox.Text), DateTime.Now );
             ViewState["Evaluacion"] = evaluacion;
             this.BindGrid();
+            foreach (var item in evaluacion.detalles)
+            {
+                TotalTextBox.Text = item.Perdido.ToString();
+            }
 
         }
         protected void RemoveLinkButton_Click(object sender, EventArgs e)
