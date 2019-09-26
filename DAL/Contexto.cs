@@ -10,7 +10,7 @@ namespace DAL
 {
     public class Contexto : DbContext
     {
-        public DbSet<ProbarTest> probar { get; set; }
+        public DbSet<Evaluacion> Evaluacion { get; set; }
 
         public Contexto() : base("ConStr")
         {

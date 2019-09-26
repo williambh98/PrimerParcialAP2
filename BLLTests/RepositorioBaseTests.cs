@@ -16,21 +16,21 @@ namespace BLL.Tests
         [TestMethod()]
         public void GuardarTest()
         {
-            ProbarTest test = new ProbarTest();
-            test.nombre = "william";
+            Evaluacion evaluacion = new Evaluacion();
+            evaluacion.nombre = "william";
 
-            RepositorioBase<ProbarTest> repositorioBase = new RepositorioBase<ProbarTest>();
-            Assert.IsTrue(repositorioBase.Guardar(test));
+            RepositorioBase<Evaluacion> repositorioBase = new RepositorioBase<Evaluacion>();
+            Assert.IsTrue(repositorioBase.Guardar(evaluacion));
         }
 
         [TestMethod()]
         public void ModificarTest()
         {
-            ProbarTest test = new ProbarTest();
-            test.IdP = 1;
+            Evaluacion test = new Evaluacion();
+            test.EvaluacionID = 1;
             test.nombre = "williamb";
 
-            RepositorioBase<ProbarTest> repositorioBase = new RepositorioBase<ProbarTest>();
+            RepositorioBase<Evaluacion> repositorioBase = new RepositorioBase<Evaluacion>();
             Assert.IsTrue(repositorioBase.Modificar(test));
         }
 
@@ -38,29 +38,19 @@ namespace BLL.Tests
         public void BuscarTest()
         {
             int id = 1;
-            ProbarTest test = new ProbarTest();
-            RepositorioBase<ProbarTest> repositorioBase = new RepositorioBase<ProbarTest>();
+            Evaluacion test = new Evaluacion();
+            RepositorioBase<Evaluacion> repositorioBase = new RepositorioBase<Evaluacion>();
             test = repositorioBase.Buscar(id);
             Assert.AreEqual(true, test != null);
         }
 
         [TestMethod()]
-        public void GetListTest()
-        {
-            RepositorioBase<ProbarTest> repositorioBase = new RepositorioBase<ProbarTest>();
-            List<ProbarTest> lista = new List<ProbarTest>();
-            Expression<Func<ProbarTest, bool>> prueba = u => true;
-            lista = repositorioBase.GetList(prueba);
-            Assert.IsNotNull(lista);
-        }
-
-        [TestMethod()]
         public void EliminarTest()
         {
-            ProbarTest probar = new ProbarTest();
-            RepositorioBase<ProbarTest> repositorioBase = new RepositorioBase<ProbarTest>();
-            probar.IdP = 1;
-            Assert.AreEqual(true, repositorioBase.Eliminar(probar.IdP));
+            Evaluacion probar = new Evaluacion();
+            RepositorioBase<Evaluacion> repositorioBase = new RepositorioBase<Evaluacion>();
+            probar.EvaluacionID = 1;
+            Assert.AreEqual(true, repositorioBase.Eliminar(probar.EvaluacionID));
         }
     }
 }
