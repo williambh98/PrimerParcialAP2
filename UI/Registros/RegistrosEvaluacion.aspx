@@ -6,7 +6,7 @@
 
     <div class="container">
         <div class="panel panel-primary">
-            <div class="panel-heading">Registro de Analisis</div>
+            <div class="panel-heading">Primer Parcial</div>
             <div class="panel-body">
                 <div class="form-horizontal col-md-12" role="form">
                     <div class="form-group">
@@ -74,6 +74,7 @@
                         </asp:GridView>
                     </div>
                 </div>
+
                      <div class="form-group">
                         <label for="Total:" class="col-md-3 control-label input-sm">Total: </label>
                         <div class="col-md-8">

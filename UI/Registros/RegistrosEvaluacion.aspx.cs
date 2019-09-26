@@ -107,13 +107,15 @@ namespace PrimerParcial.UI.Registros
             Evaluacion evaluacion = new Evaluacion();
             evaluacion = (Evaluacion)ViewState["Evaluacion"];
             decimal p = Convert.ToDecimal(ValorTextBox.Text) - Convert.ToDecimal(LogradoTextBox.Text);
-            evaluacion.AgragarDetalle(0, Utils.ToInt(IdTextBox.Text),EstudianteTextBox.Text, Convert.ToDecimal(ValorTextBox.Text),Convert.ToDecimal(LogradoTextBox.Text), DateTime.Now );
+            evaluacion.AgragarDetalle(0, Utils.ToInt(IdTextBox.Text),EstudianteTextBox.Text, Convert.ToDecimal(ValorTextBox.Text),Convert.ToDecimal(LogradoTextBox.Text),Convert.ToDateTime(DateTime.Now) );
             ViewState["Evaluacion"] = evaluacion;
             this.BindGrid();
             foreach (var item in evaluacion.detalles)
             {
                 TotalTextBox.Text = item.Perdido.ToString();
             }
+
+           
 
         }
         protected void RemoveLinkButton_Click(object sender, EventArgs e)

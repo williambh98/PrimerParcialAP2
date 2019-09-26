@@ -36,6 +36,9 @@ namespace Entidades
         public void AgragarDetalle(int DetalleID,int EvaluacionID , string nombre, decimal Valor, decimal Logrado, DateTime fecha)
         {
             this.detalles.Add(new DetalleEvaluacion(DetalleID, EvaluacionID , nombre, Valor, Logrado, fecha));
+
+
+
         }
 
         public void RemoverDetalle(int Index)
