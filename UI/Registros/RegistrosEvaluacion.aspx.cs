@@ -36,18 +36,18 @@ namespace PrimerParcial.UI.Registros
             Evaluacion evaluacion = new Evaluacion();
             evaluacion = (Evaluacion)ViewState["Evaluacion"];
             evaluacion.EvaluacionID = Convert.ToInt32(IdTextBox.Text);
-            evaluacion.nombre = EstudianteTextBox.Text;
+            evaluacion.Nombre = EstudianteTextBox.Text;
+       
             return evaluacion;
         }
 
         private void LLenarCampo(Evaluacion evaluacion)
         {
             IdTextBox.Text = evaluacion.EvaluacionID.ToString();
-            EstudianteTextBox.Text = evaluacion.nombre;
+            EstudianteTextBox.Text = evaluacion.Nombre;
             fechaTextBox.Text = evaluacion.Fecha.ToString();
             ViewState["Evaluacion"] = evaluacion;
-
-
+            BindGrid();
         }
         public void Limpiar()
         {
@@ -99,24 +99,29 @@ namespace PrimerParcial.UI.Registros
         }
         protected void BindGrid()
         {
-            GridView.DataSource = ((Evaluacion)ViewState["Evaluacion"]).detalles;
+            GridView.DataSource = ((Evaluacion)ViewState["Evaluacion"]).Detalles;
             GridView.DataBind();
         }
         protected void AgregarButton_Click(object sender, EventArgs e)
         {
             Evaluacion evaluacion = new Evaluacion();
+            decimal total = 0;
+            evaluacion.Detalles = new List<DetalleEvaluacion>();
             evaluacion = (Evaluacion)ViewState["Evaluacion"];
             decimal p = Convert.ToDecimal(ValorTextBox.Text) - Convert.ToDecimal(LogradoTextBox.Text);
-            evaluacion.AgragarDetalle(0, Utils.ToInt(IdTextBox.Text),EstudianteTextBox.Text, Convert.ToDecimal(ValorTextBox.Text),Convert.ToDecimal(LogradoTextBox.Text),Convert.ToDateTime(DateTime.Now) );
+            evaluacion.AgragarDetalle(0, 
+                Utils.ToInt(IdTextBox.Text),EstudianteTextBox.Text, 
+                Convert.ToDecimal(ValorTextBox.Text),
+                Convert.ToDecimal(LogradoTextBox.Text),
+                p,
+                Convert.ToDateTime(DateTime.Now) );
             ViewState["Evaluacion"] = evaluacion;
             this.BindGrid();
-            foreach (var item in evaluacion.detalles)
+            foreach (var item in evaluacion.Detalles)
             {
-                TotalTextBox.Text = item.Perdido.ToString();
+                total += item.Perdido;
             }
-
-           
-
+            TotalTextBox.Text = total.ToString();
         }
         protected void RemoveLinkButton_Click(object sender, EventArgs e)
         {
@@ -155,18 +160,18 @@ namespace PrimerParcial.UI.Registros
             }
             else
             {
-
+                if (repositorio.Modificar(LlenarClase()))
+                {
+                    Utils.ShowToastr(this.Page, "Modificado con exito!!", "Guardado", "success");
+                    Limpiar();
+                }
+                else
+                {
+                    Utils.ShowToastr(this.Page, "No se puede modificar", "Error", "error");
+                    Limpiar();
+                }
             }
-            if (repositorio.Modificar(LlenarClase()))
-            {
-                Utils.ShowToastr(this.Page, "Modificado con exito!!", "Guardado", "success");
-                Limpiar();
-            }
-            else
-            {
-                Utils.ShowToastr(this.Page, "No se puede modificar", "Error", "error");
-                Limpiar();
-            }
+            
         }
     }
 

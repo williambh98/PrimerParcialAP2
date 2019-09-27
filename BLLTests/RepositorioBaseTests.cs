@@ -17,7 +17,7 @@ namespace BLL.Tests
         public void GuardarTest()
         {
             Evaluacion evaluacion = new Evaluacion();
-            evaluacion.nombre = "william";
+            evaluacion.Nombre = "william";
 
             RepositorioBase<Evaluacion> repositorioBase = new RepositorioBase<Evaluacion>();
             Assert.IsTrue(repositorioBase.Guardar(evaluacion));
@@ -28,7 +28,7 @@ namespace BLL.Tests
         {
             Evaluacion test = new Evaluacion();
             test.EvaluacionID = 1;
-            test.nombre = "williamb";
+            test.Nombre = "williamb";
 
             RepositorioBase<Evaluacion> repositorioBase = new RepositorioBase<Evaluacion>();
             Assert.IsTrue(repositorioBase.Modificar(test));

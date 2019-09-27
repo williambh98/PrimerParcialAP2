@@ -17,8 +17,7 @@ namespace BLL
             Contexto contexto = new Contexto();
             try
             {
-
-                Evaluaciones = contexto.Evaluacion.Include(x => x.detalles).Where(x => x.EvaluacionID == id).FirstOrDefault();
+                Evaluaciones = contexto.Evaluacion.Include(x => x.Detalles).Where(x => x.EvaluacionID == id).FirstOrDefault();
             }
             catch (Exception)
             {
@@ -34,21 +33,24 @@ namespace BLL
         {
             var Anterior = Buscar(evaluacion.EvaluacionID);
             bool paso = false;
+
             try
             {
-                foreach (var item in Anterior.detalles.ToList())
+                using (Contexto contexto = new Contexto())
                 {
-                    if (!evaluacion.detalles.Exists(d => d.DetalleID == item.DetalleID))
+                    foreach (var item in Anterior.Detalles.ToList())
                     {
-                        _contexto.Entry(item).State = System.Data.Entity.EntityState.Deleted;
+                        if (!evaluacion.Detalles.Exists(d => d.DetalleID == item.DetalleID))
+                        {
+                            contexto.Entry(item).State = System.Data.Entity.EntityState.Deleted;
+                        }
                     }
+                    contexto.SaveChanges();
                 }
-                foreach (var item in evaluacion.detalles)
+                foreach (var item in evaluacion.Detalles)
                 {
-
-                    Contexto contexto = new Contexto();
                     var estado = item.DetalleID > 0 ? EntityState.Unchanged : EntityState.Added;
-                    contexto.Entry(item).State = estado;
+                    _contexto.Entry(item).State = estado;
                 }
                 _contexto.Entry(evaluacion).State = EntityState.Modified;
                 if (_contexto.SaveChanges() > 0)

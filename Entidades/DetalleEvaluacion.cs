@@ -35,13 +35,14 @@ namespace Entidades
             this.Fecha = DateTime.Now;
         }
 
-        public DetalleEvaluacion(int detalleID, int evaluacionID, string categoria, decimal valor, decimal logrado, DateTime fecha)
+        public DetalleEvaluacion(int detalleID, int evaluacionID, string categoria, decimal valor, decimal logrado,decimal perdido ,DateTime fecha)
         {
             DetalleID = detalleID;
             EvaluacionID = evaluacionID;
             Categoria = categoria;
             Valor = valor;
             Logrado = logrado;
+            Perdido = perdido;
             Fecha = fecha;
         }
     }

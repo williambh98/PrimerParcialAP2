@@ -12,38 +12,36 @@ namespace Entidades
     {
         [Key]
         public int EvaluacionID { get; set; }
-        public  string nombre { get; set; }
+        public  string Nombre { get; set; }
         public decimal Total { get; set; }
         public DateTime Fecha { get; set; }
-
-        public List<DetalleEvaluacion> detalles;
+        public virtual List<DetalleEvaluacion> Detalles { get; set; }
         public Evaluacion()
         {
             EvaluacionID = 0;
-            this.nombre = string.Empty;
+            this.Nombre = string.Empty;
             this.Total = 0;
+            Fecha = DateTime.Now;
+            Detalles = new List<DetalleEvaluacion>();
         }
 
         public Evaluacion(int evaluacionID, string nombre, decimal total, DateTime fecha, List<DetalleEvaluacion> detalles)
         {
             EvaluacionID = evaluacionID;
-            this.nombre = nombre;
+            this.Nombre = nombre;
             Total = total;
             Fecha = fecha;
-            this.detalles = detalles;
+            this.Detalles = detalles;
         }
 
-        public void AgragarDetalle(int DetalleID,int EvaluacionID , string nombre, decimal Valor, decimal Logrado, DateTime fecha)
+        public void AgragarDetalle(int DetalleID,int EvaluacionID , string nombre, decimal Valor, decimal Logrado,decimal Perdido, DateTime fecha)
         {
-            this.detalles.Add(new DetalleEvaluacion(DetalleID, EvaluacionID , nombre, Valor, Logrado, fecha));
-
-
-
+            this.Detalles.Add(new DetalleEvaluacion(DetalleID, EvaluacionID , nombre, Valor, Logrado, Perdido, fecha));
         }
 
         public void RemoverDetalle(int Index)
         {
-            this.detalles.RemoveAt(Index);
+            this.Detalles.RemoveAt(Index);
         }
 
     }
