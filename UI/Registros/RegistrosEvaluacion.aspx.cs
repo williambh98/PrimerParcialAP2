@@ -37,6 +37,7 @@ namespace PrimerParcial.UI.Registros
             evaluacion = (Evaluacion)ViewState["Evaluacion"];
             evaluacion.EvaluacionID = Convert.ToInt32(IdTextBox.Text);
             evaluacion.Nombre = EstudianteTextBox.Text;
+            evaluacion.Total = Utils.ToInt(TotalTextBox.Text);
        
             return evaluacion;
         }
@@ -46,8 +47,9 @@ namespace PrimerParcial.UI.Registros
             IdTextBox.Text = evaluacion.EvaluacionID.ToString();
             EstudianteTextBox.Text = evaluacion.Nombre;
             fechaTextBox.Text = evaluacion.Fecha.ToString();
+            TotalTextBox.Text = evaluacion.Total.ToString();
             ViewState["Evaluacion"] = evaluacion;
-            BindGrid();
+            this.BindGrid();
         }
         public void Limpiar()
         {
@@ -57,9 +59,53 @@ namespace PrimerParcial.UI.Registros
             ValorTextBox.Text = 0.ToString();
             LogradoTextBox.Text = 0.ToString();
             TotalTextBox.Text = 0.ToString();
+            fechaTextBox.Text = DateTime.Now.ToString();
             ViewState["Evaluacion"] = new Evaluacion();
             GridView.DataSource = null;
             this.BindGrid();
+        }
+        private bool ValidarAgregar()
+        {
+            bool estato = false;
+
+            if (String.IsNullOrWhiteSpace(EstudianteTextBox.Text))
+            {
+                Utils.ShowToastr(this, "Debe llenar el campo estudiante", "Error", "error");
+                estato = true;
+            }
+            if (String.IsNullOrWhiteSpace(CategoriaTextBox.Text))
+            {
+                Utils.ShowToastr(this, "Debe llenar el campo categoria", "Error", "error");
+                estato = true;
+            }
+            if (String.IsNullOrWhiteSpace(ValorTextBox.Text))
+            {
+                Utils.ShowToastr(this, "Debe llenar el campo valor", "Error", "error");
+                estato = true;
+            }
+            if (String.IsNullOrWhiteSpace(LogradoTextBox.Text))
+            {
+                Utils.ShowToastr(this, "Debe llenar el campo logrado", "Error", "error");
+                estato = true;
+            }
+            return estato;
+        }
+
+        private bool Validar()
+        {
+            bool estato = false;
+
+            if (GridView.Rows.Count == 0)
+            {
+                Utils.ShowToastr(this, "Debe agregar detalle.", "Error", "error");
+                estato = true;
+            }
+            if (String.IsNullOrWhiteSpace(IdTextBox.Text))
+            {
+                Utils.ShowToastr(this, "Debe tener un Id para guardar", "Error", "error");
+                estato = true;
+            }
+            return estato;
         }
         protected void buscarButton_Click(object sender, EventArgs e)
         {
@@ -69,8 +115,9 @@ namespace PrimerParcial.UI.Registros
                 LLenarCampo(a);
             else
             {
-                Utils.ShowToastr(this.Page, "Id no exite", "Error", "error");
                 Limpiar();
+                Utils.ShowToastr(this.Page, "Id no exite", "Error", "error");
+               
             }
         }
 
@@ -83,19 +130,21 @@ namespace PrimerParcial.UI.Registros
         {
             GridViewRow grid = GridView.SelectedRow;
             RepositorioEvaluacion repositorio = new RepositorioEvaluacion();
+            int id = Utils.ToInt(IdTextBox.Text);
+            var evaluacion = repositorio.Buscar(id);
 
+            if (evaluacion != null)
+            {
+                if (repositorio.Eliminar(id))
+                {
+                    Utils.ShowToastr(this.Page, "Exito Eliminado", "success");
+                    Limpiar();
+                }
+                else
+                    Utils.ShowToastr(this.Page, "No Eliminado", "error");
+            }
+               
 
-            if (IdTextBox.Text == 0.ToString())
-            {
-                Utils.ShowToastr(this.Page, "Id no exite", "success");
-                return;
-            }
-            if (repositorio.Eliminar(Convert.ToInt32(IdTextBox.Text)))
-            {
-                Utils.ShowToastr(this.Page, "Exito Eliminado", "success");
-                Limpiar();
-            }
-           
         }
         protected void BindGrid()
         {
@@ -109,12 +158,8 @@ namespace PrimerParcial.UI.Registros
             evaluacion.Detalles = new List<DetalleEvaluacion>();
             evaluacion = (Evaluacion)ViewState["Evaluacion"];
             decimal p = Convert.ToDecimal(ValorTextBox.Text) - Convert.ToDecimal(LogradoTextBox.Text);
-            evaluacion.AgragarDetalle(0, 
-                Utils.ToInt(IdTextBox.Text),EstudianteTextBox.Text, 
-                Convert.ToDecimal(ValorTextBox.Text),
-                Convert.ToDecimal(LogradoTextBox.Text),
-                p,
-                Convert.ToDateTime(DateTime.Now) );
+            evaluacion.AgragarDetalle(0, Utils.ToInt(IdTextBox.Text),EstudianteTextBox.Text, Convert.ToDecimal(ValorTextBox.Text),
+            Convert.ToDecimal(LogradoTextBox.Text),p,Convert.ToDateTime(DateTime.Now) );
             ViewState["Evaluacion"] = evaluacion;
             this.BindGrid();
             foreach (var item in evaluacion.Detalles)
@@ -142,7 +187,10 @@ namespace PrimerParcial.UI.Registros
             RepositorioEvaluacion repositorio = new RepositorioEvaluacion();
             Evaluacion evaluacion = repositorio.Buscar(Utils.ToInt(IdTextBox.Text));
 
-
+            if(Validar())
+            {
+                return;
+            }
             if (evaluacion == null)
             {
                 if (repositorio.Guardar(LlenarClase()))

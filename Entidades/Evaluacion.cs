@@ -16,6 +16,8 @@ namespace Entidades
         public decimal Total { get; set; }
         public DateTime Fecha { get; set; }
         public virtual List<DetalleEvaluacion> Detalles { get; set; }
+
+
         public Evaluacion()
         {
             EvaluacionID = 0;
@@ -25,14 +27,14 @@ namespace Entidades
             Detalles = new List<DetalleEvaluacion>();
         }
 
-        public Evaluacion(int evaluacionID, string nombre, decimal total, DateTime fecha, List<DetalleEvaluacion> detalles)
+      /*  public Evaluacion(int evaluacionID, string nombre, decimal total, DateTime fecha, List<DetalleEvaluacion> detalles)
         {
             EvaluacionID = evaluacionID;
             this.Nombre = nombre;
             Total = total;
             Fecha = fecha;
             this.Detalles = detalles;
-        }
+        }*/
 
         public void AgragarDetalle(int DetalleID,int EvaluacionID , string nombre, decimal Valor, decimal Logrado,decimal Perdido, DateTime fecha)
         {
