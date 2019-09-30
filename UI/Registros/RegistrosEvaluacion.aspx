@@ -77,7 +77,7 @@
 
                      <div class="form-group">
                         <label for="Total:" class="col-md-3 control-label input-sm">Total: </label>
-                        <div class="col-md-8">
+                        <div class="col-md-4">
                             <asp:TextBox class="form-control input-sm" ID="TotalTextBox" runat="server"></asp:TextBox>
                         </div>
                     </div>
