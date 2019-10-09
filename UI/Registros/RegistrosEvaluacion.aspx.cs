@@ -25,9 +25,10 @@ namespace PrimerParcial.UI.Registros
                     if (user == null)
                         Utils.ShowToastr(this, "Id no existe", "Error", "error");
                     else
+                        LlenarCombo();
                         LLenarCampo(user);
                 }
-               
+                LlenarCombo();
                 ViewState["Evaluacion"] = new Evaluacion();
             }
         }
@@ -36,26 +37,43 @@ namespace PrimerParcial.UI.Registros
             Evaluacion evaluacion = new Evaluacion();
             evaluacion = (Evaluacion)ViewState["Evaluacion"];
             evaluacion.EvaluacionID = Convert.ToInt32(IdTextBox.Text);
-            evaluacion.Nombre = EstudianteTextBox.Text;
+            evaluacion.EstudianteID = EstudianteDropdownList.SelectedValue.Length;
             evaluacion.Total = Utils.ToInt(TotalTextBox.Text);
-       
             return evaluacion;
         }
 
         private void LLenarCampo(Evaluacion evaluacion)
         {
+            Limpiar();
             IdTextBox.Text = evaluacion.EvaluacionID.ToString();
-            EstudianteTextBox.Text = evaluacion.Nombre;
             fechaTextBox.Text = evaluacion.Fecha.ToString();
+            EstudianteDropdownList.SelectedValue = evaluacion.EstudianteID.ToString();
             TotalTextBox.Text = evaluacion.Total.ToString();
             ViewState["Evaluacion"] = evaluacion;
             this.BindGrid();
         }
+        private void LlenarCombo()
+        {
+            EstudianteDropdownList.Items.Clear();
+            CategoriaDropDownList.Items.Clear();
+            RepositorioBase<Estudiantes> repositorio = new RepositorioBase<Estudiantes>();
+            EstudianteDropdownList.DataSource = repositorio.GetList(x => true);
+            EstudianteDropdownList.DataValueField = "EstudianteID";
+            EstudianteDropdownList.DataTextField = "Nombre";
+            EstudianteDropdownList.DataBind();
+
+
+            RepositorioBase<Categoria> repositorioPacientes = new RepositorioBase<Categoria>();
+            CategoriaDropDownList.DataSource = repositorioPacientes.GetList(x => true);
+            CategoriaDropDownList.DataValueField = "CategoriaID";
+            CategoriaDropDownList.DataTextField = "Descripcion";
+            CategoriaDropDownList.DataBind();
+        }
         public void Limpiar()
         {
             IdTextBox.Text = "0";
-            EstudianteTextBox.Text = string.Empty;
-            CategoriaTextBox.Text = string.Empty;
+            EstudianteDropdownList.ClearSelection();
+            CategoriaDropDownList.ClearSelection();
             ValorTextBox.Text = 0.ToString();
             LogradoTextBox.Text = 0.ToString();
             TotalTextBox.Text = 0.ToString();
@@ -68,12 +86,12 @@ namespace PrimerParcial.UI.Registros
         {
             bool estato = false;
 
-            if (String.IsNullOrWhiteSpace(EstudianteTextBox.Text))
+            if (String.IsNullOrWhiteSpace(EstudianteDropdownList.Text))
             {
                 Utils.ShowToastr(this, "Debe llenar el campo estudiante", "Error", "error");
                 estato = true;
             }
-            if (String.IsNullOrWhiteSpace(CategoriaTextBox.Text))
+            if (String.IsNullOrWhiteSpace(CategoriaDropDownList.Text))
             {
                 Utils.ShowToastr(this, "Debe llenar el campo categoria", "Error", "error");
                 estato = true;
@@ -107,7 +125,7 @@ namespace PrimerParcial.UI.Registros
             }
             return estato;
         }
-        protected void buscarButton_Click(object sender, EventArgs e)
+        protected void BuscarButton_Click(object sender, EventArgs e)
         {
             RepositorioBase<Evaluacion> rep = new RepositorioBase<Evaluacion>();
             Evaluacion a = rep.Buscar(Convert.ToInt32(IdTextBox.Text));
@@ -158,8 +176,8 @@ namespace PrimerParcial.UI.Registros
             evaluacion.Detalles = new List<DetalleEvaluacion>();
             evaluacion = (Evaluacion)ViewState["Evaluacion"];
             decimal p = Convert.ToDecimal(ValorTextBox.Text) - Convert.ToDecimal(LogradoTextBox.Text);
-            evaluacion.AgragarDetalle(0, Utils.ToInt(IdTextBox.Text),EstudianteTextBox.Text, Convert.ToDecimal(ValorTextBox.Text),
-            Convert.ToDecimal(LogradoTextBox.Text),p,Convert.ToDateTime(DateTime.Now) );
+            evaluacion.AgragarDetalle(0, Utils.ToInt(IdTextBox.Text),Utils.ToInt(CategoriaDropDownList.SelectedValue), Convert.ToDecimal(ValorTextBox.Text),
+            Convert.ToDecimal(LogradoTextBox.Text), p);
             ViewState["Evaluacion"] = evaluacion;
             this.BindGrid();
             foreach (var item in evaluacion.Detalles)

@@ -4,51 +4,64 @@
 
 <html>
 <head runat="server">
-    
+
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <link href="Content/toastr.css" rel="stylesheet" />
-    <script type="text/javascript" src="/Scripts/toastr.min.js"></script>
-    <%--<link href="Content/bootstrap.min.css" rel="stylesheet" />--%>
-    <%--<script type="text/javascript" src="/Scripts/jquery-3.0.0.min.js"></script>
-    <script type="text/javascript" src="/Scripts/bootstrap.min.js"></script>
-    <script type="text/javascript" src="/Scripts/bootstrap.bundle.min.js"></script>--%>
+    <%--<link href="/content/bootstrap.min.css" rel="stylesheet" />--%>
+    <link href="/content/toastr.css" rel="stylesheet" />
+    <%--<script src="/Scripts/jquery-3.0.0.min.js"></script>
+    <script src="/Scripts/bootstrap.min.js"></script>--%>
+    <script src="/Scripts/bootstrap.bundle.min.js"></script>
+    <script src="/Scripts/toastr.min.js"></script>
 
-
-
-    <title>Primer Parcial.do</title>
+    <title>Evaluacion.do</title>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav mr-auto">
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Registros
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="/UI/Registros/RegistrosEvaluacion.aspx">Prueba</a>
-                            </div>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Consultas
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="/UI/Consultas/RegistrosEvaluacion.aspx">Prueba</a>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </nav>       
-                
+    <%--Menu Evaluacion--%>
+    <div class="container-">
+        <nav class="navbar navbar-inverse">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav">
+                    <%--  <li><a href="#" style="font-family: Arial; font-size: 16px">Inicio</a></li>--%>
+                    <li class="dropdown">
+
+                        <a class="dropdown-toggle" data-toggle="dropdown" style="font-family: Arial; font-size: 16px">Registros<span class="caret"></span></a>
+                        <ul class="dropdown-menu" style="font-family: Arial; font-size: 16px">
+                            <li><a href="/UI/Registros/RegistrosEvaluacion.aspx">Evaluacion</a></li>
+                            <li><a href="/UI/Registros/RegistrosEstudiantes.aspx">Estudiantes</a></li>
+                            <li><a href="/UI/Registros/RegistrosCategorias.aspx">Categoria</a></li>
+
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" style="font-family: Arial; font-size: 16px">Consultas<span class="caret"></span></a>
+                        <ul class="dropdown-menu" style="font-family: Arial; font-size: 16px">
+                            <li><a href="/UI/Consultas/ConsultasEvaluacion.aspx">Evaluacion</a></li>
+                            <li><a href="/UI/Consultas/ConsultasEstudiantes.aspx">Estudiantes</a></li>
+                            <li><a href="/UI/Consultas/ConsultasCategoria.aspx">Categoria</a></li>
+                        </ul>
+                    </li>
+                    <%--<li><a href="#" style="font-family: Arial; font-size: 16px">Ayuda</a></li>--%>
+                </ul>
+            </div>
+            <div class="clearfix visible-lg-block"></div>
+        </nav>
+    </div>
+
     <form id="form1" runat="server">
         <div>
             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">

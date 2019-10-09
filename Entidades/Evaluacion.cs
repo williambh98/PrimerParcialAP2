@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,7 +13,9 @@ namespace Entidades
     {
         [Key]
         public int EvaluacionID { get; set; }
-        public  string Nombre { get; set; }
+        public int EstudianteID { get; set; }
+        [ForeignKey("EstudianteID")]
+        public virtual Estudiantes Estudiantes { get; set; }
         public decimal Total { get; set; }
         public DateTime Fecha { get; set; }
         public virtual List<DetalleEvaluacion> Detalles { get; set; }
@@ -21,24 +24,24 @@ namespace Entidades
         public Evaluacion()
         {
             EvaluacionID = 0;
-            this.Nombre = string.Empty;
+            EstudianteID = 0;
             this.Total = 0;
             Fecha = DateTime.Now;
             Detalles = new List<DetalleEvaluacion>();
         }
 
-      /*  public Evaluacion(int evaluacionID, string nombre, decimal total, DateTime fecha, List<DetalleEvaluacion> detalles)
+        public Evaluacion(int evaluacionID, int estudianteID, decimal total, DateTime fecha, List<DetalleEvaluacion> detalles)
         {
             EvaluacionID = evaluacionID;
-            this.Nombre = nombre;
+            EstudianteID = estudianteID;
             Total = total;
             Fecha = fecha;
-            this.Detalles = detalles;
-        }*/
+            Detalles = detalles;
+        }
 
-        public void AgragarDetalle(int DetalleID,int EvaluacionID , string nombre, decimal Valor, decimal Logrado,decimal Perdido, DateTime fecha)
+        public void AgragarDetalle(int DetalleID,int EvaluacionID,int categoriaID,decimal Valor, decimal Logrado,decimal Perdido)
         {
-            this.Detalles.Add(new DetalleEvaluacion(DetalleID, EvaluacionID , nombre, Valor, Logrado, Perdido, fecha));
+            this.Detalles.Add(new DetalleEvaluacion(DetalleID, EvaluacionID , categoriaID, Valor, Logrado, Perdido));
         }
 
         public void RemoverDetalle(int Index)

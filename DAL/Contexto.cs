@@ -11,6 +11,9 @@ namespace DAL
     public class Contexto : DbContext
     {
         public DbSet<Evaluacion> Evaluacion { get; set; }
+        public DbSet<Estudiantes> Estudiantes { get; set; }
+        public DbSet<Categoria> Categoria { get; set; }
+
 
         public Contexto() : base("ConStr")
         {

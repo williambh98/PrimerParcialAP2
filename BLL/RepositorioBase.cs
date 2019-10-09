@@ -103,7 +103,7 @@ namespace BLL
 
         public void Dispose()
         {
-            throw new NotImplementedException();
+            _contexto.Dispose();
         }
     }
 }

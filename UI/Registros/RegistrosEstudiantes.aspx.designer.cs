@@ -10,7 +10,7 @@
 namespace PrimerParcial.UI.Registros {
     
     
-    public partial class RegistrosEvaluacion {
+    public partial class RegistrosEstudiantes {
         
         /// <summary>
         /// IdTextBox control.
@@ -40,67 +40,31 @@ namespace PrimerParcial.UI.Registros {
         protected global::System.Web.UI.WebControls.TextBox fechaTextBox;
         
         /// <summary>
-        /// EstudianteDropdownList control.
+        /// NombreTextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList EstudianteDropdownList;
+        protected global::System.Web.UI.WebControls.TextBox NombreTextBox;
         
         /// <summary>
-        /// CategoriaDropDownList control.
+        /// NombreID control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList CategoriaDropDownList;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator NombreID;
         
         /// <summary>
-        /// ValorTextBox control.
+        /// PerdidoTextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox ValorTextBox;
-        
-        /// <summary>
-        /// LogradoTextBox control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox LogradoTextBox;
-        
-        /// <summary>
-        /// AgregardoButton control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button AgregardoButton;
-        
-        /// <summary>
-        /// GridView control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridView;
-        
-        /// <summary>
-        /// TotalTextBox control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TotalTextBox;
+        protected global::System.Web.UI.WebControls.TextBox PerdidoTextBox;
         
         /// <summary>
         /// NuevoButton control.
@@ -146,14 +110,5 @@ namespace PrimerParcial.UI.Registros {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RegularExpressionValidator EliminarRegularExpressionValidator;
-        
-        /// <summary>
-        /// Panel1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel Panel1;
     }
 }

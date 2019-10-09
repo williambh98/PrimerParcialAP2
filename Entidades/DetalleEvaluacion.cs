@@ -14,15 +14,17 @@ namespace Entidades
         [Key]
         public int DetalleID { get; set; }
         public int EvaluacionID { get; set; }
-        public string Categoria { get; set;}
-        public decimal Valor { get; set;}
+        public int CategoriaID { get; set; }
+        public string Categoria { get; set; }
+        public decimal Valor { get; set; }
         public decimal Logrado { get; set; }
         public decimal Perdido { get; set; }
-        public DateTime Fecha { get; set; }
-        
+
+        [ForeignKey("CategoriaID")]
+        public virtual Categoria categoria { get; set; }
 
         [ForeignKey("EvaluacionID")]
-        public virtual Evaluacion  evaluacion { get; set; }
+        public virtual Evaluacion evaluacion { get; set; }
 
         public DetalleEvaluacion()
         {
@@ -32,18 +34,17 @@ namespace Entidades
             this.Valor = 0;
             this.Logrado = 0;
             this.Perdido = 0;
-            this.Fecha = DateTime.Now;
         }
 
-        public DetalleEvaluacion(int detalleID, int evaluacionID, string categoria, decimal valor, decimal logrado,decimal perdido ,DateTime fecha)
+        public DetalleEvaluacion(int detalleID, int evaluacionID, int categoriaID, decimal valor, decimal logrado, decimal perdido)
         {
             DetalleID = detalleID;
             EvaluacionID = evaluacionID;
-            Categoria = categoria;
+            CategoriaID = categoriaID;
+            Categoria = string.Empty;
             Valor = valor;
             Logrado = logrado;
             Perdido = perdido;
-            Fecha = fecha;
         }
     }
 }
